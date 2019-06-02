@@ -23,6 +23,7 @@ const config = merge(
       root: rootPath,
       assets: path.join(rootPath, 'resources'),
       dist: path.join(rootPath, 'dist'),
+      ui: path.join(rootPath, 'resources/views/core/ui.js'),
     },
     enabled: {
       sourceMaps: !isProduction,

@@ -12,6 +12,9 @@ const path = require('path');
 const desire = require('./util/desire');
 const config = require('./config');
 
+const jsToSass = require('./util/getSassValue');
+const uiConfig = require(config.paths.ui);
+
 const assetsFilenames = config.enabled.cacheBusting ? config.cacheBusting : '[name]';
 
 let webpackConfig = {
@@ -98,6 +101,9 @@ let webpackConfig = {
               options: {
                 sourceMap: config.enabled.sourceMaps,
                 sourceComments: true,
+                functions: {
+                  'ui($keys)': jsToSass(uiConfig),
+                },
               },
             },
           ],
