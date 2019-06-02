@@ -7,16 +7,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyGlobsPlugin = require('copy-globs-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const path = require('path');
 
 const desire = require('./util/desire');
 const config = require('./config');
 
-const assetsFilenames = (config.enabled.cacheBusting) ? config.cacheBusting : '[name]';
+const assetsFilenames = config.enabled.cacheBusting ? config.cacheBusting : '[name]';
 
 let webpackConfig = {
   context: config.paths.assets,
   entry: config.entry,
-  devtool: (config.enabled.sourceMaps ? '#source-map' : undefined),
+  devtool: config.enabled.sourceMaps ? '#source-map' : undefined,
   output: {
     path: config.paths.dist,
     publicPath: config.publicPath,
@@ -67,7 +68,8 @@ let webpackConfig = {
             { loader: 'cache' },
             { loader: 'css', options: { sourceMap: config.enabled.sourceMaps } },
             {
-              loader: 'postcss', options: {
+              loader: 'postcss',
+              options: {
                 config: { path: __dirname, ctx: config },
                 sourceMap: config.enabled.sourceMaps,
               },
@@ -84,14 +86,16 @@ let webpackConfig = {
             { loader: 'cache' },
             { loader: 'css', options: { sourceMap: config.enabled.sourceMaps } },
             {
-              loader: 'postcss', options: {
+              loader: 'postcss',
+              options: {
                 config: { path: __dirname, ctx: config },
                 sourceMap: config.enabled.sourceMaps,
               },
             },
             { loader: 'resolve-url', options: { sourceMap: config.enabled.sourceMaps } },
             {
-              loader: 'sass', options: {
+              loader: 'sass',
+              options: {
                 sourceMap: config.enabled.sourceMaps,
                 sourceComments: true,
               },
@@ -122,6 +126,7 @@ let webpackConfig = {
   },
   resolve: {
     modules: [
+      path.join(config.paths.assets, 'views'),
       config.paths.assets,
       'node_modules',
     ],
@@ -130,9 +135,13 @@ let webpackConfig = {
   resolveLoader: {
     moduleExtensions: ['-loader'],
   },
+  /**
+   * Disable jQuery
+   *
   externals: {
     jquery: 'jQuery',
   },
+  */
   plugins: [
     new CleanPlugin([config.paths.dist], {
       root: config.paths.root,
@@ -151,14 +160,18 @@ let webpackConfig = {
     new ExtractTextPlugin({
       filename: `styles/${assetsFilenames}.css`,
       allChunks: true,
-      disable: (config.enabled.watcher),
+      disable: config.enabled.watcher,
     }),
+    /**
+     * Disable jQuery
+     *
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       Popper: 'popper.js/dist/umd/popper.js',
     }),
+    */
     new webpack.LoaderOptionsPlugin({
       minimize: config.enabled.optimize,
       debug: config.enabled.watcher,
@@ -185,8 +198,8 @@ let webpackConfig = {
   ],
 };
 
-/* eslint-disable global-require */ /** Let's only load dependencies as needed */
-
+/* eslint-disable global-require */
+/** Let's only load dependencies as needed */
 if (config.enabled.optimize) {
   webpackConfig = merge(webpackConfig, require('./webpack.config.optimize'));
 }
