@@ -11,6 +11,9 @@ use Roots\Sage\Template\BladeProvider;
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
+    $GOOGLE_FONT_URL = 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap';
+
+    wp_enqueue_style('google/fonts.css', $GOOGLE_FONT_URL, false, null);
     wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
     wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), null, null, true);
 
