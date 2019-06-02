@@ -1,3 +1,5 @@
+@import '~core/ui';
+
 html {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -20,8 +22,8 @@ body {
 }
 
 body {
-  color: #333;
-  font-family: "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: color('grey', '800');
+  font-family: font('sans');
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
