@@ -23,6 +23,7 @@
 $colors: ui('color');
 $units: ui('unit');
 $zIndexes: ui('z');
+$durations: ui('duration');
 $fonts: ui('font');
 $heights: ui('height');
 $widths: ui('width');
@@ -68,6 +69,17 @@ $breakpoints: ui('breakpoint');
 */
 @function z($zIndex) {
   @return getValue($zIndexes, $zIndex, 'z-index not found');
+}
+
+/**
+* Duration Function
+*
+* A duration helper for all animations and transitions timings.
+*
+* transition: all duration();
+*/
+@function duration($duration: 'normal') {
+  @return getValue($durations, $duration, 'Duration not found');
 }
 
 /**

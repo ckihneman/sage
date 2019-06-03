@@ -108,6 +108,13 @@ const z = {
   bottom: -1,
 };
 
+// Timings
+const duration = {
+  fast: '200ms',
+  normal: '400ms',
+  slow: '800ms',
+};
+
 // Font Stacks
 const font = {
   sans: '"Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif',
@@ -123,5 +130,6 @@ module.exports = {
   width,
   breakpoint,
   z,
+  duration,
   font,
 };
