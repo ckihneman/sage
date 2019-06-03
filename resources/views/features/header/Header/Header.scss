@@ -1,0 +1,30 @@
+@import '~core/ui';
+
+.Header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: height('header', 'mobile');
+  z-index: z('header');
+  background-color: color('primary', '100');
+
+  @include bp(md) {
+    height: height('header', 'desktop');
+  }
+}
+
+.Header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+
+  @include bp(md) {
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.Header-logo {
+  align-self: center;
+}

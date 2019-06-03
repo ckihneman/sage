@@ -1,0 +1,28 @@
+@import '~core/ui';
+
+.Single-header {
+  margin-bottom: unit(2);
+}
+
+.Single-title {
+  margin-bottom: unit(2);
+}
+
+.Single-imageWrap {
+  margin-bottom: unit(2);
+}
+
+.Single-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.Single-author {
+  color: color('secondary');
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

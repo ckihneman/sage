@@ -1,0 +1,11 @@
+@import '~core/ui';
+
+.Page {
+  padding-top: unit(2);
+  padding-bottom: unit(2);
+
+  @include bp(sm) {
+    padding-top: unit(4);
+    padding-bottom: unit(4);
+  }
+}

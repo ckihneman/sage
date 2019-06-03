@@ -1,0 +1,48 @@
+@import '~core/ui';
+
+.FooterBoard {
+  padding-top: unit(3);
+  padding-bottom: unit(3);
+  background-color: color('grey', '300');
+}
+
+.FooterBoard-inner {
+  @include bp(sm) {
+    display: flex;
+  }
+}
+
+.FooterBoard-section {
+  @include bp(sm) {
+    flex: 1;
+  }
+
+  & + & {
+    margin-top: unit(4);
+
+    @include bp(sm) {
+      margin-top: 0;
+    }
+  }
+}
+
+.FooterBoard-title {
+  margin-bottom: unit(2);
+}
+
+.FooterBoard-nav {
+  list-style-type: none;
+
+  li + li {
+    margin-top: unit(2);
+  }
+
+  li a {
+    color: color('secondary');
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import '~core/ui';
+
+.Footer {
+  background-color: color('grey', '100');
+  padding-top: unit(2);
+  padding-bottom: unit(2);
+}
+
+.Footer-copyright {
+  text-align: center;
+}

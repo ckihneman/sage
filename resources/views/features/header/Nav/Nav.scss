@@ -1,0 +1,105 @@
+@import '~core/ui';
+
+.Nav {
+  position: fixed;
+  top: 0;
+  right: -(width('nav', 'mobile'));
+  width: width('nav', 'mobile');
+  height: 100vh;
+  background-color: color('grey', '100');
+  z-index: z('nav');
+  transition: right 400ms;
+
+  @include bp(md) {
+    position: static;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+  }
+
+  .is-navActive & {
+    right: 0;
+  }
+}
+
+.Nav-items {
+  padding-top: unit(3);
+  list-style-type: none;
+
+  @include bp(md) {
+    display: flex;
+    padding-top: 0;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  a {
+    display: block;
+    padding: unit(2) unit(3);
+    color: color('secondary', '700');
+    text-decoration: none;
+
+    &:hover {
+      color: color('primary');
+    }
+  }
+
+  .current_page_item a {
+    font-weight: bold;
+  }
+}
+
+.Nav-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: z('navOverlay');
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all duration();
+
+  .is-navActive & {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.Nav-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 100%;
+  border: 0;
+  cursor: pointer;
+
+  @include bp(md) {
+    display: none;
+  }
+}
+
+.Nav-close {
+  position: absolute;
+  top: unit();
+  right: unit();
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border: 0;
+  background-color: color('grey', '300');
+  cursor: pointer;
+
+  @include bp(md) {
+    display: none;
+  }
+}

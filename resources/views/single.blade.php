@@ -2,6 +2,6 @@
 
 @section('content')
   @while(have_posts()) @php the_post() @endphp
-    @include('partials.content-single-'.get_post_type())
+    @include('features.library.Single.Single', Singular::single())
   @endwhile
 @endsection

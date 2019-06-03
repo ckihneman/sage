@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.page-header')
+  @include('features.library.Billboard.Billboard', ['title' => App::title()])
 
-  @if (!have_posts())
-    <div class="alert alert-warning">
-      {{ __('Sorry, no results were found.', 'sage') }}
+  <div class="Container Container--lg  Library">
+
+    <div class="Library-content">
+      @while (have_posts()) @php the_post() @endphp
+        @include('features.library.ArchiveItem.ArchiveItem', Singular::archiveItem())
+      @endwhile
+
+      {!! get_the_posts_navigation() !!}
     </div>
-    {!! get_search_form(false) !!}
-  @endif
 
-  @while (have_posts()) @php the_post() @endphp
-    @include('partials.content-'.get_post_type())
-  @endwhile
-
-  {!! get_the_posts_navigation() !!}
+    <div class="Library-sidebar">
+      @include('features.library.BlogSidebar.BlogSidebar')
+    </div>
+  </div>
 @endsection

@@ -1,0 +1,55 @@
+@import '~core/ui';
+
+.Content {
+  line-height: 24px;
+
+  @include bp(sm) {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  h2 {
+    margin-bottom: unit(2);
+    font-size: 22px;
+    line-height: 28px;
+
+    @include bp(sm) {
+      font-size: 24px;
+      line-height: 30px;
+    }
+  }
+
+  p {
+    margin-bottom: unit(3);
+  }
+
+  ul,
+  ol {
+    margin-left: unit(3);
+    margin-bottom: unit(3);
+  }
+
+  li {
+    padding-left: unit();
+
+    @include bp(sm) {
+      padding-left: unit(2);
+    }
+  }
+
+  li + li {
+    margin-top: unit();
+  }
+
+  p,
+  li {
+    a {
+      color: color('secondary');
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

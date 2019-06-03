@@ -1,0 +1,35 @@
+@import '~core/ui';
+
+.Library {
+  padding-top: unit(3);
+  padding-bottom: unit(3);
+
+  @include bp(sm) {
+    display: flex;
+    width: 100%;
+    padding-top: unit(6);
+    padding-bottom: unit(6);
+  }
+}
+
+.Library-content {
+  @include bp(sm) {
+    flex: 2;
+    padding-right: unit(2);
+  }
+
+  @include bp(md) {
+    padding-right: unit(4);
+  }
+}
+
+.Library-sidebar {
+  @include bp(sm) {
+    flex: 1;
+    padding-left: unit(2);
+  }
+
+  @include bp(md) {
+    padding-left: unit(4);
+  }
+}

@@ -83,18 +83,17 @@ const breakpoint = {
 // Heights
 const height = {
   header: {
-    mobile: '60px',
-    desktop: '100px',
+    mobile: '56px',
+    desktop: '72px',
   },
 };
 
 // Width
 const width = {
+  ...breakpoint,
   max: '1440px',
-  content: '1180px',
-  small: '660px',
   nav: {
-    mobile: '400px',
+    mobile: '300px',
   },
 };
 
@@ -104,6 +103,7 @@ const z = {
   modalOverlay: 490,
   nav: 300,
   header: 100,
+  navOverlay: 90,
   base: 1,
   bottom: -1,
 };

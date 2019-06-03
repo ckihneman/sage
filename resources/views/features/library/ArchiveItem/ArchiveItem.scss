@@ -1,0 +1,47 @@
+@import '~core/ui';
+
+.ArchiveItem {
+  margin-bottom: unit(4);
+}
+
+.ArchiveItem-header {
+  margin-bottom: unit();
+}
+
+.ArchiveItem-title {
+  margin-bottom: unit();
+}
+
+.ArchiveItem-titleLink {
+  color: color('secondary');
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.ArchiveItem-author {
+  color: color('secondary');
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.ArchiveItem-date {
+  display: block;
+}
+
+.ArchiveItem-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: unit();
+}
+
+.ArchiveItem-excerpt {
+  font-size: 18px;
+  line-height: 22px;
+}
