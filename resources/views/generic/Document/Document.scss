@@ -2,10 +2,10 @@
 
 .Document {
   min-height: 100%;
-  margin-top: height('header', 'mobile');
+  padding-top: height('header', 'mobile');
 
   @include bp(md) {
-    margin-top: height('header', 'desktop');
+    padding-top: height('header', 'desktop');
   }
 
   &.Document--pushNav {
