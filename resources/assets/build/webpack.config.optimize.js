@@ -20,7 +20,7 @@ module.exports = {
         ],
       },
       plugins: [imageminMozjpeg({ quality: 75 })],
-      disable: (config.enabled.watcher),
+      disable: config.enabled.watcher,
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

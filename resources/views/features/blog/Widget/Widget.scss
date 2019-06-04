@@ -1,0 +1,26 @@
+@import '~core/ui';
+
+.Widget {
+  margin-bottom: unit(4);
+}
+
+.Widget-title {
+  margin-bottom: unit(2);
+}
+
+.Widget-list {
+  list-style-type: none;
+}
+
+.Widget-item {
+  margin-bottom: unit();
+}
+
+.Widget-link {
+  color: color('secondary');
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

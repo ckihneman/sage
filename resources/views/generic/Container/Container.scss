@@ -1,0 +1,13 @@
+@import '~core/ui';
+
+.Container {
+  max-width: width('max');
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: unit(2);
+  padding-right: unit(2);
+
+  &.Container--lg {
+    max-width: width('lg');
+  }
+}

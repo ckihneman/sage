@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.page-header')
+  @include('features.library.Billboard.Billboard', ['title' => App::title()])
 
-  @if (!have_posts())
-    <div class="alert alert-warning">
-      {{ __('Sorry, but the page you were trying to view does not exist.', 'sage') }}
+  <div class="Page">
+    <div class="Container">
+
+      <p>
+        {{ __('Sorry, but the page you were trying to view does not exist.', 'sage') }}
+      </p>
+
+      {!! get_search_form(false) !!}
+
     </div>
-    {!! get_search_form(false) !!}
-  @endif
+  </div>
 @endsection

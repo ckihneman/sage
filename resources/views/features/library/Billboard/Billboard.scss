@@ -1,0 +1,12 @@
+@import '~core/ui';
+
+.Billboard {
+  padding-top: unit(3);
+  padding-bottom: unit(3);
+  background-color: color('grey', '100');
+
+  @include bp(sm) {
+    padding-top: unit(5);
+    padding-bottom: unit(5);
+  }
+}

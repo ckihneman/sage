@@ -11,11 +11,23 @@ use Roots\Sage\Template\BladeProvider;
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
+    $GOOGLE_FONT_URL = 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap';
+
+    wp_enqueue_style('google/fonts.css', $GOOGLE_FONT_URL, false, null);
     wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
-    wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), null, null, true);
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
+    }
+
+    /**
+     * Do not load wp-embed or jQuery
+     * @link https://crunchify.com/how-to-disable-auto-embed-script-for-wordpress-4-4-wp-embed-min-js/
+     */
+    if (!is_admin()) {
+        wp_deregister_script('wp-embed');
+        wp_deregister_script('jquery');
     }
 }, 100);
 
@@ -28,10 +40,16 @@ add_action('after_setup_theme', function () {
      * @link https://roots.io/plugins/soil/
      */
     add_theme_support('soil-clean-up');
-    add_theme_support('soil-jquery-cdn');
     add_theme_support('soil-nav-walker');
     add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
+
+    /**
+     * Do not load jQuery
+     */
+    if (!is_admin()) {
+        add_theme_support('soil-jquery-cdn');
+    }
 
     /**
      * Enable plugins to manage the document title
@@ -44,7 +62,8 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'sage')
+        'primary_navigation' => __('Primary Navigation', 'sage'),
+        'primary_footer_navigation' => __('Primary Footer Navigation', 'sage'),
     ]);
 
     /**
@@ -70,6 +89,15 @@ add_action('after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('styles/main.css'));
+
+    /**
+     * Disable Emojis
+     * @link https://www.searchcandy.uk/blog/wordpress/how-to-disable-emojis-in-wordpress/
+     */
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('admin_print_styles', 'print_emoji_styles');
 }, 20);
 
 /**

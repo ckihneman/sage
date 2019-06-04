@@ -1,0 +1,194 @@
+/**
+ * UI Variables
+ *
+ * Access any value from your config in ui.js with
+ * `ui` helper function built-in from webpack.config.js.
+ * Use dot notation to access nested values.
+ *
+ * If you update values in ui.js,
+ * you need to re-start your dev tools if they were running.
+ *
+ * Examples:
+ *
+ * $primaryColors: ui('color.primary');
+ *
+ * .Component {
+ *   max-width: ui('width.max');
+ *   height: ui('height.header.mobile');
+ *   margin-bottom: ui('unit.2');
+ *   font-family: ui('font.sans');
+ *   color: ui('color.primary.500');
+ * }
+ */
+$colors: ui('color');
+$units: ui('unit');
+$zIndexes: ui('z');
+$durations: ui('duration');
+$fonts: ui('font');
+$heights: ui('height');
+$widths: ui('width');
+$breakpoints: ui('breakpoint');
+
+/**
+* Color Function
+*
+* A color helper that defaults to tone 500 for the color group.
+* Use it for gradients too.
+*
+* background-color: color('primary', '700');
+* background-image: color('gradient', 'primary');
+*/
+@function color($color, $tone: '500') {
+  @return getValue(
+    $colors,
+    $color,
+    'Color group not found',
+    $tone,
+    'Color tone not found'
+  );
+}
+
+/**
+* Unit Function
+*
+* A unit helper that defaults to unit 1, great for margin and padding.
+*
+* margin-bottom: unit();
+* margin-bottom: unit(3);
+*/
+@function unit($unit: 1) {
+  @return getValue($units, $unit, 'Unit not found');
+}
+
+/**
+* Z-Index Function
+*
+* A z-index helper to keep control over your full z-index stack.
+*
+* z-index: z('modal');
+*/
+@function z($zIndex) {
+  @return getValue($zIndexes, $zIndex, 'z-index not found');
+}
+
+/**
+* Duration Function
+*
+* A duration helper for all animations and transitions timings.
+*
+* transition: all duration();
+*/
+@function duration($duration: 'normal') {
+  @return getValue($durations, $duration, 'Duration not found');
+}
+
+/**
+* Font Function
+*
+* A font family helper for all your font stacks.
+*
+* font-family: font('sans');
+*/
+@function font($fontStack) {
+  @return getValue($fonts, $fontStack, 'Font stack not found');
+}
+
+/**
+* Height Function
+*
+* A height helper for key height values.
+*
+* height: height('header', 'mobile');
+*/
+@function height($height, $nestedHeight: false) {
+  @return getValue(
+    $heights,
+    $height,
+    'Height not found',
+    $nestedHeight,
+    'Nested height not found'
+  );
+}
+
+/**
+* Width Function
+*
+* A width helper for key width values.
+*
+* width: width('max');
+* width: width('nav', 'mobile');
+*/
+@function width($width, $nestedWidth: false) {
+  @return getValue(
+    $widths,
+    $width,
+    'Width not found',
+    $nestedWidth,
+    'Nested width not found'
+  );
+}
+
+/**
+* Breakpoint Mixin
+*
+* A min-width based breakpoint helper.
+*
+* .Component {
+*   font-size: 16px;
+*
+*   @include bp(sm) {
+*     font-size: 18px;
+*   }
+*
+*   @include bp(md) {
+*     font-size: 20px;
+*   }
+*
+*   @include bp(lg) {
+*     font-size: 22px;
+*   }
+* }
+*/
+@mixin bp($breakpointName) {
+  @if map-has-key($breakpoints, $breakpointName) {
+    $breakpoint: map-get($breakpoints, $breakpointName);
+
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+
+  @else {
+    @error 'Breakpoint not found: #{$breakpointName}';
+  }
+}
+
+/**
+ * getValue
+ *
+ * Get a flat or nested value from a set with error handling.
+ */
+@function getValue($array, $name, $nameError, $nested: false, $nestedError: '') {
+  $name: quote($name);
+  $value: '';
+
+  @if map-has-key($array, $name) {
+    $value: map-get($array, $name);
+
+    @if $nested {
+      @if map-has-key($value, $nested) {
+        $value: map-get($value, $nested);
+      }
+
+      @else {
+        @error '#{$nestedError}: #{$nested}';
+      }
+    }
+  }
+
+  @else {
+    @error '#{$nameError}: #{$name}';
+  }
+
+  @return $value;
+}
