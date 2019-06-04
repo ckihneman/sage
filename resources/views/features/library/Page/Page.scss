@@ -8,4 +8,38 @@
     padding-top: unit(4);
     padding-bottom: unit(4);
   }
+
+  &.Page--sidebar {
+    padding-top: unit(3);
+    padding-bottom: unit(3);
+
+    @include bp(sm) {
+      display: flex;
+      width: 100%;
+      padding-top: unit(6);
+      padding-bottom: unit(6);
+    }
+  }
+}
+
+.Page-content {
+  @include bp(sm) {
+    flex: 2;
+    padding-right: unit(2);
+  }
+
+  @include bp(md) {
+    padding-right: unit(4);
+  }
+}
+
+.Page-sidebar {
+  @include bp(sm) {
+    flex: 1;
+    padding-left: unit(2);
+  }
+
+  @include bp(md) {
+    padding-left: unit(4);
+  }
 }

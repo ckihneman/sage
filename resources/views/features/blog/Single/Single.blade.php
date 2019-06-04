@@ -1,5 +1,5 @@
-<div class="Container Container--lg  Library">
-  <div class="Library-content">
+<div class="Container Container--lg  Page Page--sidebar">
+  <div class="Page-content">
     <article class="Single">
       <header class="Single-header">
         <h1 class="Single-title">
@@ -27,7 +27,7 @@
     @include('features.library.Comments.Comments')
   </div>
 
-  <div class="Library-sidebar">
-    @include('features.library.BlogSidebar.BlogSidebar')
+  <div class="Page-sidebar">
+    @include('features.blog.BlogSidebar.BlogSidebar')
   </div>
 </div>
